@@ -106,11 +106,10 @@ def handle_photo():
         date_str, info = filename.split("_")
         info, _ = info.split(".")
         date = datetime.strptime(date_str, "%Y-%m-%d")
-        year_month_day = date_str[0:10]            
+        year_month = date_str[0:7]            
         if i == 0:  # 处理第一个文件
-            new_dict = {"date": year_month_day, "arr":{'year': date.year,
+            new_dict = {"date": year_month, "arr":{'year': date.year,
                                                                    'month': date.month,
-																   'day': date.day,
                                                                    'link': [filename],
                                                                    'text': [info],
                                                                    'type': ['image']
@@ -118,9 +117,8 @@ def handle_photo():
                                         } 
             list_info.append(new_dict)
         elif year_month_day != list_info[-1]['date']:  # 不是最后的一个日期，就新建一个dict
-            new_dict = {"date": year_month_day, "arr":{'year': date.year,
+            new_dict = {"date": year_month, "arr":{'year': date.year,
                                                    'month': date.month,
-												  'day': date.day,
                                                    'link': [filename],
                                                    'text': [info],
                                                    'type': ['image']
